@@ -1,9 +1,6 @@
 import React from 'react';
-
-
 class Grade extends React.Component {
-      
- constructor(props) {
+  constructor(props) {
     super(props);
     this.state = {
       suma: 0,
@@ -18,13 +15,11 @@ class Grade extends React.Component {
   }
 
   handlenum1Change (evt) {
-   
     this.setState({ num1: parseInt(evt.target.value) });
     console.log(typeof evt.target.value);
   }
 
   handlenum2Change(evt) {
-    
     this.setState({ num2: parseInt(evt.target.value) });
     console.log(typeof evt.target.value);
   }
@@ -36,29 +31,23 @@ class Grade extends React.Component {
     let resta = this.state.num1 - this.state.num2
     this.setState({resta: resta })
 
-    let multi = this.state.num1 + this.state.num2
+    let multi = this.state.num1 * this.state.num2
     this.setState({multi: multi })
 
     let div = this.state.num1 / this.state.num2
     this.setState({div: div })
-
-  }
+ }
 
 
 render() {
- 
- return (
+  return (
+       <form>
+          <br/>
+          <input type="number" name="num1" onChange={this.handlenum1Change}/>
+          <input type="number" name="num2" onChange={this.handlenum2Change}/>
 
-  
-    <form>
-       <br/>
-        <label>
-          Name:
-          <input type="number" name="num1" onChange={this.handlenum1Change} />
-          <input type="number" name="num2"   onChange={this.handlenum2Change}/>
-
-          <input type="button" onClick={this.addAction} value="resultados" />
-<br/>
+          <input type="button" onClick={this.addAction} value="resultados"/>
+          <br/>
           
           <p>Sumados dan:</p>
           <input type='text' value={this.state.suma} readOnly/>
@@ -71,8 +60,7 @@ render() {
 
           <p>Divididos dan:</p>
           <input type='text' value={this.state.div} readOnly/>
-        </label>
-      </form>
+        </form>
      );
   }
 }

@@ -1,7 +1,6 @@
 import React, { Fragment, useState} from 'react';
 import uuid from 'uuid/v4';
 
-
 const Formulario = ({crearTareasp}) => {  
 
     // Crear State de Recordatorios
@@ -10,14 +9,10 @@ const Formulario = ({crearTareasp}) => {
         detalles:'',
         deadline:'',
         deadtime:''
-        
-    })
-
+     })
     const {hacer,detalles,deadline,deadtime} = tarea
 
-   
-
-     const efUpdateStarea = e =>{
+    const efUpdateStarea = e =>{
           fusFillTarea({
               ...tarea, 
               [e.target.name]: e.target.value
@@ -36,82 +31,62 @@ const Formulario = ({crearTareasp}) => {
          fusError(false)
 
         /*  tarea.id = uuidv4 */
-    
-     
-         /* let UID = "componente-" + Math.floor(Math.random() * 999999);
+        /* let UID = "componente-" + Math.floor(Math.random() * 999999);
        tarea.id = UID; */
        
        tarea.id = uuid()
-     
-           //meter cada objeto en array
-
-           //recetear formulario
+      //recetear formulario
          fusFillTarea({
             hacer: '',
             detalles: '',
             deadline: '',
             deadtime: ''
-     
         })   
-
+         //meter cada objeto en array
         crearTareasp(tarea)
-
-        }
+}
    
-   
-   
-
-    return ( 
+   return ( 
         <Fragment>
             
             <h2>Escribe tu recordatorio:</h2>
      
-            <form
-            onSubmit={enviarForm}
-            >
+        <form onSubmit={enviarForm}>
 
                <input
                name="hacer"
                type="text"
                placeholder="hacer"
                onChange={efUpdateStarea}
-               value={hacer}
-               />   <br/>
+               value={hacer}/>   <br/>
                  
-                 <input
-                 name="detalles"
+               <input
+                name="detalles"
                type="text"
                placeholder="detalles"
                onChange={efUpdateStarea}
-               value={detalles}
-               />   <br/>
+               value={detalles}/>   <br/>
              
                 <label>deadline:</label> 
                   <br/>
-                  
-                 <input
+               <input
                  name="deadline"
                  type="date"
                  onChange={efUpdateStarea}
-                 value={deadline}
-                /> 
+                 value={deadline}/> 
                 <br/>
+
                 <input
                  name="deadtime"
                  type="time"
                  onChange={efUpdateStarea}
-                 value={deadtime}
-                /> 
-                <br/>
+                 value={deadtime} /> <br/>
 
           {error?<p>Usa todos los campos</p>:null}
                  <br/>
 
-             <button
-             type="submit"
-             > Agregar
-             </button>
-            </form>
+             <button type="submit"> Agregar</button>
+        </form>
 
            
         </Fragment>

@@ -5,11 +5,9 @@ import Recordatorio from "./components/Recordatorio";
 
 function App() {
   
+const [tareas, funFillTareas] = useState([]) 
 
- const [tareas, funFillTareas] = useState([]) 
-
-
-//mete cada objeto en un array de objeos
+//mete cada objeto en un array 
   const crearTareasf = tarea =>{
          funFillTareas([
     ...tareas, tarea
@@ -17,36 +15,26 @@ function App() {
   console.log('tareasArray', tareas)
   }
 
-  
-   const eliminarf = id => {
+  const eliminarf = id => {
     const nuevoEstado= tareas.filter(tarea => tarea.id !== id );
     funFillTareas(nuevoEstado);
  }
 
-
-   
-
-
  const titulo = tareas.length === 0 ? "No hay Tareas" : "Administra tus Tareas"; 
 
   return (
- 
     <Fragment>
          {titulo}
-      <Formulario 
-         crearTareasp={crearTareasf}
-      />
+      <Formulario crearTareasp={crearTareasf}/>
  
-      {tareas.map(tarea=>(<Recordatorio key={tarea.id} tarea={tarea} eliminarp={eliminarf} />))}
-
-
+      {tareas.map(tarea=>(<Recordatorio key={tarea.id} tarea={tarea} eliminarp={eliminarf}/>))}
     </Fragment>
   );
 
   }
 export default App;
 
-
+ 
 
 
 
@@ -62,6 +50,6 @@ export default App;
         ))} */
 
   
-        //eliminar elemento(onjeto) de array    
+        //eliminar elemento(objeto) de array    
 
         /* const states-1_state = satates.filter((state)=> state.id !== id) */
