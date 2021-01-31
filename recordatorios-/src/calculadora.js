@@ -36,7 +36,7 @@ class Grade extends React.Component {
     let resta = this.state.num1 - this.state.num2
     this.setState({resta: resta })
 
-    let multi = this.state.num1 + this.state.num2
+    let multi = this.state.num1 * this.state.num2
     this.setState({multi: multi })
 
     let div = this.state.num1 / this.state.num2
