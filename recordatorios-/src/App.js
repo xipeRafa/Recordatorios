@@ -32,6 +32,7 @@ const [tareaEdit, setTareaEdit] = useState(null);
       ? tareaEdit
       : tarea))
      funFillTareas(changedTodos);
+     setTareaEdit(null)
 }
 
  const titulo = tareas.length === 0 ? "No hay Tareas" : "Administra tus Tareas"; 

@@ -46,7 +46,7 @@ const Formulario = ({crearTareasp,setTareaEdit,tareaEdit,todoUpdate}) => {
         /*  tarea.id = uuidv4 */
         /* let UID = "componente-" + Math.floor(Math.random() * 999999);
        tarea.id = UID; */
-       if(tareaEdit){todoUpdate(tarea);setSuccessMessage('Actualizado con éxito Ahora presiona Escribir Nueva Tarea'); }
+       if(tareaEdit){todoUpdate(tarea);setSuccessMessage('Actualizado con éxito'); }
        else {crearTareasp(tarea);setSuccessMessage('Agregado con exito'); }//meter cada objeto en array
 
        if(tareaEdit){todoUpdate(tarea);}
