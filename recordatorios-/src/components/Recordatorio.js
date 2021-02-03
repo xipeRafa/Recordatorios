@@ -1,7 +1,7 @@
 import React, { Fragment} from 'react';
 
 
-const Recordatorio = ({tarea, eliminarp}) => {  
+const Recordatorio = ({tarea, eliminarp, setTareaEdit}) => {  
 
   return ( 
     <Fragment>
@@ -17,6 +17,12 @@ const Recordatorio = ({tarea, eliminarp}) => {
           <button
            onClick={ () => eliminarp(tarea.id)}>
                Eliminar {tarea.hacer}
+          </button>
+
+          <br/>
+          <button
+           onClick={ () => setTareaEdit(tarea)}>
+               Editar {tarea.hacer}
           </button>
          </div>
     </Fragment>

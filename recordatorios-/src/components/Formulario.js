@@ -1,7 +1,10 @@
-import React, { Fragment, useState} from 'react';
+import React, { Fragment, useState,useEffect} from 'react';
 import uuid from 'uuid/v4';
 
-const Formulario = ({crearTareasp}) => {  
+
+const Formulario = ({crearTareasp,setTareaEdit,tareaEdit,todoUpdate}) => {  
+    
+    const [successMessage, setSuccessMessage] = useState(null);
 
     // Crear State de Recordatorios
     const [tarea, fusFillTarea] = useState({
@@ -20,6 +23,16 @@ const Formulario = ({crearTareasp}) => {
         /*  console.log(tarea) */
      }
 
+     useEffect(() => {
+        if(tareaEdit){fusFillTarea(tareaEdit);}
+        else{fusFillTarea({
+            hacer:'',
+            detalles:'',
+            deadline:'',
+            deadtime:''
+        });}
+    }, [tareaEdit])
+
      const[error,fusError]= useState(false)
 
      const enviarForm = e =>{
@@ -33,23 +46,27 @@ const Formulario = ({crearTareasp}) => {
         /*  tarea.id = uuidv4 */
         /* let UID = "componente-" + Math.floor(Math.random() * 999999);
        tarea.id = UID; */
+       if(tareaEdit){todoUpdate(tarea);setSuccessMessage('Actualizado con éxito Ahora presiona Escribir Nueva Tarea'); }
+       else {crearTareasp(tarea);setSuccessMessage('Agregado con exito'); }//meter cada objeto en array
+
+       if(tareaEdit){todoUpdate(tarea);}
+       else {tarea.id = uuid()}
        
-       tarea.id = uuid()
-      //recetear formulario
-         fusFillTarea({
+       setTimeout(() => {
+        setSuccessMessage(null);
+    }, 6000);
+      //recetear formulario siempre al final
+        fusFillTarea({
             hacer: '',
             detalles: '',
             deadline: '',
             deadtime: ''
         })   
-         //meter cada objeto en array
-        crearTareasp(tarea)
-}
+   }
    
    return ( 
         <Fragment>
-            
-            <h2>Escribe tu recordatorio:</h2>
+         <h2>Escribe tu recordatorio:</h2>
      
         <form onSubmit={enviarForm}>
 
@@ -84,11 +101,18 @@ const Formulario = ({crearTareasp}) => {
 
           {error?<p>Usa todos los campos</p>:null}
                  <br/>
+                 
+             <button type="submit"> 
+             { tareaEdit ? 'Editar' : 'Agregar tarea' }
 
-             <button type="submit"> Agregar</button>
+             </button>
         </form>
+        {tareaEdit &&
+                <button onClick={() => setTareaEdit(null)} >
+                     Escribir Nueva Tarea
+                </button>  } 
 
-           
+        {successMessage && (<div>{ successMessage }</div>)}
         </Fragment>
     );
 
