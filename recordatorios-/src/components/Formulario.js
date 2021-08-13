@@ -5,16 +5,17 @@ import {v4 as uuidv4} from 'uuid'
 const Formulario = ({ crearTareasp, setTareaEdit, tareaEdit, todoUpdate }) => {  
     
     const [successMessage, setSuccessMessage] = useState(null)
-    const [error,setError]= useState(false)
+    const [error, setError] = useState(false)
 
     const [tarea, setTarea] = useState({
-        hacer:'',
-        detalles:'',
-        deadline:'',
-        deadtime:''
+        hacer: '',
+        detalles: '',
+        deadline: '',
+        deadtime: '',
+        toggle: false,
     })
 
-    const { hacer, detalles, deadline, deadtime } = tarea
+    const { hacer, detalles, deadline, deadtime, toggle } = tarea
 
     const formChange = e =>{
           setTarea( { ...tarea, [e.target.name]: e.target.value } )
@@ -22,7 +23,7 @@ const Formulario = ({ crearTareasp, setTareaEdit, tareaEdit, todoUpdate }) => {
 
     useEffect(() => {
         if(tareaEdit){ setTarea(tareaEdit) }
-        else{ setTarea({ hacer:'', detalles:'', deadline:'', deadtime:'' }) }
+        else{ setTarea({ hacer:'', detalles:'', deadline:'', deadtime:'', toggle:false }) }
     }, [tareaEdit])
 
     const enviarForm = e =>{
@@ -31,7 +32,7 @@ const Formulario = ({ crearTareasp, setTareaEdit, tareaEdit, todoUpdate }) => {
 
         if( hacer.trim() === '' || detalles.trim() === '' || 
             deadline.trim() === '' || deadtime.trim() === '' ){
-                setError(true)
+                setError(true); return
         }
 
         setError(false)
@@ -44,7 +45,7 @@ const Formulario = ({ crearTareasp, setTareaEdit, tareaEdit, todoUpdate }) => {
        
         setTimeout(() => { setSuccessMessage(null) }, 6000)
 
-        setTarea({ hacer: '', detalles: '', deadline: '', deadtime: '' }) //reset   
+        setTarea({ hacer: '', detalles: '', deadline: '', deadtime: '' }) //reset form 
     }
    
    return ( 
@@ -82,7 +83,8 @@ const Formulario = ({ crearTareasp, setTareaEdit, tareaEdit, todoUpdate }) => {
                     onChange={formChange}
                     value={deadtime} />  <br/>
 
-            { error ? <p>Usa todos los campos</p> : null }  <br/>
+                    
+            { error ? <p>Usa todos los campos</p> : null}  <br/>
                  
             <button type="submit"> { tareaEdit ? 'Editar' : 'Agregar tarea' } </button>
 

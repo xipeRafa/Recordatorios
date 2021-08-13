@@ -7,19 +7,24 @@ function App() {
   
   const [tareas, setTareas] = useState([]) 
   const [tareaEdit, setTareaEdit] = useState(null)
-
+  console.log(tareas)
   //mete cada objeto en un array 
   const crearTareasf = tarea =>{ setTareas( [...tareas, tarea] ) }
 
   const eliminarf = id => {
     setTareas( tareas.filter( tarea => tarea.id !== id ) )
   }
-
+  
   const tareaEditf = tarea => { setTareaEdit(tarea) }
 
   const todoUpdate = update => {
-  setTareas( tareas.map( tarea => tarea.id === update.id ? update : tarea ) )
-     setTareaEdit(null)
+      setTareas( tareas.map( tarea => tarea.id === update.id ? update : tarea ) )
+      setTareaEdit(null)
+  }
+  
+  const setTareaToggle = toggle => { 
+      setTareaEdit( tareas.map( tarea => tarea.id === toggle ? tarea.toggle = !tarea.toggle : tarea.toggle = tarea.toggle ) )
+      setTareaEdit(null) 
   }
 
   const titulo = tareas.length === 0 ? "No hay Tareas" : "Administra tus Tareas" 
@@ -42,7 +47,8 @@ function App() {
                 key={tarea.id}
                 tarea={tarea} 
                 eliminarp={eliminarf} 
-                setTareaEdit={tareaEditf} />
+                setTareaEdit={tareaEditf}
+                setTareaToggle={setTareaToggle} />
           )
         )
       }
@@ -56,19 +62,3 @@ export default App
  
 
 
-
-
-
-//estados:estado que es un array de objetos(renderear)
-/*    {estate.map(state=>(
-                       <Componente 
-                       key={objeto.id}
-                       cita={objeto}
-                       eliminar={eliminarObjeto}
-                       />
-        ))} */
-
-  
-        //eliminar elemento(objeto) de array    
-
-        /* const states-1_state = satates.filter((state)=> state.id !== id) */
