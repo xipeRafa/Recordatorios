@@ -1,5 +1,5 @@
 import React, { Fragment, useState,useEffect} from 'react';
-import uuid from 'uuid/v4';
+import {v4 as uuidv4} from 'uuid';
 
 
 const Formulario = ({crearTareasp,setTareaEdit,tareaEdit,todoUpdate}) => {  
@@ -50,7 +50,7 @@ const Formulario = ({crearTareasp,setTareaEdit,tareaEdit,todoUpdate}) => {
        else {crearTareasp(tarea);setSuccessMessage('Agregado con exito'); }//meter cada objeto en array
 
        if(tareaEdit){todoUpdate(tarea);}
-       else {tarea.id = uuid()}
+       else {tarea.id = uuidv4()}
        
        setTimeout(() => {
         setSuccessMessage(null);
