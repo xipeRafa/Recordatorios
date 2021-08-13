@@ -7,13 +7,13 @@ const Formulario = ({ crearTareasp, setTareaEdit, tareaEdit, todoUpdate }) => {
     const [successMessage, setSuccessMessage] = useState(null);
     const [error,setError]= useState(false)
 
-    // Crear State de Recordatorios
     const [tarea, setTarea] = useState({
         hacer:'',
         detalles:'',
         deadline:'',
         deadtime:''
     })
+
     const { hacer, detalles, deadline, deadtime } = tarea
 
     const formChange = e =>{
@@ -21,87 +21,76 @@ const Formulario = ({ crearTareasp, setTareaEdit, tareaEdit, todoUpdate }) => {
     }
 
     useEffect(() => {
-        if(tareaEdit){setTarea(tareaEdit);}
-        else{setTarea({
-            hacer:'',
-            detalles:'',
-            deadline:'',
-            deadtime:''
-        });}
+        if(tareaEdit){ setTarea(tareaEdit) }
+        else{ setTarea({ hacer:'', detalles:'', deadline:'', deadtime:'' }) }
     }, [tareaEdit])
 
     const enviarForm = e =>{
 
-         e.preventDefault();
+        e.preventDefault();
 
-         if(deadtime.trim() === '' || hacer.trim() === '' || detalles.trim() === '' || deadline.trim() === ''){
-            setError(true)
-             return;
-         }
+        if( hacer.trim() === '' || detalles.trim() === '' || 
+            deadline.trim() === '' || deadtime.trim() === '' ){
+                setError(true)
+        }
 
-         setError(false)
- 
-        // let UID = "componente-" + Math.floor(Math.random() * 999999);
+        setError(false)
     
-       if(tareaEdit){ todoUpdate(tarea); setSuccessMessage('Actualizado con éxito') }
-       else{ crearTareasp(tarea); setSuccessMessage('Agregado con exito') }//meter cada objeto en array
+        if(tareaEdit){ todoUpdate(tarea); setSuccessMessage('Actualizado con éxito') }
+        else{ crearTareasp(tarea); setSuccessMessage('Agregado con exito') } //meter cada objeto en array
 
-       if(tareaEdit){ todoUpdate(tarea) }
-       else{ tarea.id = uuidv4() }
+        if(tareaEdit){ todoUpdate(tarea) }
+        else{ tarea.id = uuidv4() }
        
-       setTimeout(() => { setSuccessMessage(null) }, 6000);
+        setTimeout(() => { setSuccessMessage(null) }, 6000);
 
-      //recetear formulario siempre al final
-        setTarea({
-            hacer: '',
-            detalles: '',
-            deadline: '',
-            deadtime: ''
-        })   
+        setTarea({ hacer: '', detalles: '', deadline: '', deadtime: '' }) //reset   
     }
    
    return ( 
     <Fragment>
+
         <h2>Escribe tu recordatorio:</h2>
      
-        <form onSubmit={enviarForm}>
+        <form onSubmit={ enviarForm }>
 
                 <input
                     name="hacer"
                     type="text"
                     placeholder="hacer"
                     onChange={formChange}
-                    value={hacer}/>   <br/>
+                    value={hacer}/>  <br/>
                  
                 <input
                     name="detalles"
                     type="text"
                     placeholder="detalles"
                     onChange={formChange}
-                    value={detalles}/>   <br/>
+                    value={detalles}/>  <br/>
              
-                <label>deadline:</label> <br/>
+                <label>deadline:</label>  <br/>
 
                 <input
                     name="deadline"
                     type="date"
                     onChange={formChange}
-                    value={deadline}/> <br/>
+                    value={deadline}/>  <br/>
 
                 <input
                     name="deadtime"
                     type="time"
                     onChange={formChange}
-                    value={deadtime} /> <br/>
+                    value={deadtime} />  <br/>
 
-            {error?<p>Usa todos los campos</p>:null}<br/>
+            { error ? <p>Usa todos los campos</p> : null }  <br/>
                  
             <button type="submit"> { tareaEdit ? 'Editar' : 'Agregar tarea' } </button>
 
         </form>
 
+
         { tareaEdit &&
-            <button onClick={() => setTareaEdit(null)}> Nueva Tarea </button> 
+            <button onClick={ ()=> setTareaEdit(null) }> Nueva Tarea </button> 
         } 
 
         { successMessage && 
@@ -109,8 +98,7 @@ const Formulario = ({ crearTareasp, setTareaEdit, tareaEdit, todoUpdate }) => {
         }
 
     </Fragment>
-    );
-
+   )
 }
 
  

@@ -12,18 +12,13 @@ function App() {
   const crearTareasf = tarea =>{ setTareas( [...tareas, tarea] ) }
 
   const eliminarf = id => {
-    const nuevoEstado = tareas.filter(tarea => tarea.id !== id );
-    setTareas(nuevoEstado);
+    setTareas( tareas.filter( tarea => tarea.id !== id ) )
   }
 
   const tareaEditf = tarea => { setTareaEdit(tarea) }
 
-  const todoUpdate = tareaEdit => {
-  const changedTodos = tareas.map(tarea => (
-     tarea.id === tareaEdit.id
-      ? tareaEdit
-      : tarea))
-     setTareas(changedTodos);
+  const todoUpdate = update => {
+  setTareas( tareas.map( tarea => tarea.id === update.id ? update : tarea ) )
      setTareaEdit(null)
   }
 
@@ -42,18 +37,18 @@ function App() {
           tareaEdit={tareaEdit}
           todoUpdate={todoUpdate} />
  
-      {tareas.map(tarea=>( <Recordatorio 
-                              key={tarea.id}
-                              tarea={tarea} 
-                              eliminarp={eliminarf} 
-                              setTareaEdit={tareaEditf} />
-                          )
-                  )
+      {tareas.map( tarea => ( 
+            <Recordatorio 
+                key={tarea.id}
+                tarea={tarea} 
+                eliminarp={eliminarf} 
+                setTareaEdit={tareaEditf} />
+          )
+        )
       }
 
     </Fragment>
-  );
-
+  )
 }
 
 export default App;
