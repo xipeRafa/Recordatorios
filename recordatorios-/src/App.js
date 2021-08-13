@@ -1,12 +1,12 @@
-import React, { Fragment,useState} from "react";
-import Formulario from "./components/Formulario";
-import Recordatorio from "./components/Recordatorio";
+import React, { Fragment,useState} from "react"
+import Formulario from "./components/Formulario"
+import Recordatorio from "./components/Recordatorio"
 
 
 function App() {
   
   const [tareas, setTareas] = useState([]) 
-  const [tareaEdit, setTareaEdit] = useState(null);
+  const [tareaEdit, setTareaEdit] = useState(null)
 
   //mete cada objeto en un array 
   const crearTareasf = tarea =>{ setTareas( [...tareas, tarea] ) }
@@ -22,7 +22,7 @@ function App() {
      setTareaEdit(null)
   }
 
-  const titulo = tareas.length === 0 ? "No hay Tareas" : "Administra tus Tareas"; 
+  const titulo = tareas.length === 0 ? "No hay Tareas" : "Administra tus Tareas" 
 
   return (
     <Fragment>
@@ -51,7 +51,7 @@ function App() {
   )
 }
 
-export default App;
+export default App
 
  
 

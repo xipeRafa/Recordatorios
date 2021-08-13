@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment } from 'react'
 
 
 const Recordatorio = ({ tarea, eliminarp, setTareaEdit }) => {  
@@ -29,7 +29,7 @@ const Recordatorio = ({ tarea, eliminarp, setTareaEdit }) => {
 
         </div>
     </Fragment>
-  );
+  )
 }
  
-export default Recordatorio;
+export default Recordatorio

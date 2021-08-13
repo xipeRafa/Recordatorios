@@ -1,10 +1,10 @@
-import React, { Fragment, useState,useEffect} from 'react';
-import {v4 as uuidv4} from 'uuid';
+import React, { Fragment, useState,useEffect} from 'react'
+import {v4 as uuidv4} from 'uuid'
 
 
 const Formulario = ({ crearTareasp, setTareaEdit, tareaEdit, todoUpdate }) => {  
     
-    const [successMessage, setSuccessMessage] = useState(null);
+    const [successMessage, setSuccessMessage] = useState(null)
     const [error,setError]= useState(false)
 
     const [tarea, setTarea] = useState({
@@ -27,7 +27,7 @@ const Formulario = ({ crearTareasp, setTareaEdit, tareaEdit, todoUpdate }) => {
 
     const enviarForm = e =>{
 
-        e.preventDefault();
+        e.preventDefault()
 
         if( hacer.trim() === '' || detalles.trim() === '' || 
             deadline.trim() === '' || deadtime.trim() === '' ){
@@ -42,7 +42,7 @@ const Formulario = ({ crearTareasp, setTareaEdit, tareaEdit, todoUpdate }) => {
         if(tareaEdit){ todoUpdate(tarea) }
         else{ tarea.id = uuidv4() }
        
-        setTimeout(() => { setSuccessMessage(null) }, 6000);
+        setTimeout(() => { setSuccessMessage(null) }, 6000)
 
         setTarea({ hacer: '', detalles: '', deadline: '', deadtime: '' }) //reset   
     }
@@ -102,4 +102,4 @@ const Formulario = ({ crearTareasp, setTareaEdit, tareaEdit, todoUpdate }) => {
 }
 
  
-export default Formulario;
+export default Formulario
