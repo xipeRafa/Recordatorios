@@ -15,7 +15,7 @@ const Formulario = ({ crearTareasp, setTareaEdit, tareaEdit, todoUpdate }) => {
         toggle: false,
     })
 
-    const { hacer, detalles, deadline, deadtime, toggle } = tarea
+    const { hacer, detalles, deadline, deadtime } = tarea
 
     const formChange = e =>{
           setTarea( { ...tarea, [e.target.name]: e.target.value } )
@@ -87,14 +87,14 @@ const Formulario = ({ crearTareasp, setTareaEdit, tareaEdit, todoUpdate }) => {
             { error ? <p>Usa todos los campos</p> : null}  <br/>
                  
             <button type="submit"> { tareaEdit ? 'Editar' : 'Agregar tarea' } </button>
-
+            <br/><br/>
         </form>
 
 
         { tareaEdit &&
             <button onClick={ ()=> setTareaEdit(null) }> Nueva Tarea </button> 
         } 
-
+                
         { successMessage && 
             <div>{ successMessage }</div> 
         }

@@ -26,13 +26,17 @@ const Recordatorio = ({ tarea, eliminarp, setTareaEdit, setTareaToggle }) => {
             onClick={ ()=> setTareaEdit(tarea) }>
             Editar {tarea.hacer}
           </button>  <br/> <br/>
+          
+          <label htmlFor='box' id='toggle'>Completed </label>
 
-          <input
+          <input 
+            id='box'
             name="toggle"
             type="checkbox"
             onChange={()=> setTareaToggle(tarea.id) }
           />  
 
+         
         </div>
     </Fragment>
   )

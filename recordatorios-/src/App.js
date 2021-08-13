@@ -8,6 +8,7 @@ function App() {
   const [tareas, setTareas] = useState([]) 
   const [tareaEdit, setTareaEdit] = useState(null)
   console.log(tareas)
+
   //mete cada objeto en un array 
   const crearTareasf = tarea =>{ setTareas( [...tareas, tarea] ) }
 
@@ -18,12 +19,12 @@ function App() {
   const tareaEditf = tarea => { setTareaEdit(tarea) }
 
   const todoUpdate = update => {
-      setTareas( tareas.map( tarea => tarea.id === update.id ? update : tarea ) )
+      setTareas(tareas.map( tarea => tarea.id === update.id ? update : tarea ))
       setTareaEdit(null)
   }
   
   const setTareaToggle = toggle => { 
-      setTareaEdit( tareas.map( tarea => tarea.id === toggle ? tarea.toggle = !tarea.toggle : tarea.toggle = tarea.toggle ) )
+      setTareaEdit(tareas.map( tarea => tarea.id === toggle ? tarea.toggle = !tarea.toggle : tarea.toggle ))
       setTareaEdit(null) 
   }
 
@@ -34,7 +35,7 @@ function App() {
 
       {titulo}
 
-      <h2>{ tareaEdit ? 'Editar tarea' : ' ' }</h2>
+      <h2>{ tareaEdit && 'Editar tarea' }</h2>
 
       <Formulario 
           crearTareasp={crearTareasf} 
