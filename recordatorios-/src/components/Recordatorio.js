@@ -27,10 +27,10 @@ const Recordatorio = ({ tarea, eliminarp, setTareaEdit, setTareaToggle }) => {
             Editar {tarea.hacer}
           </button>  <br/> <br/>
           
-          <label htmlFor='box' id='toggle'>Completed </label>
+          <label htmlFor={tarea.id} id='toggle'>Completed </label>
 
           <input 
-            id='box'
+            id={tarea.id}
             name="toggle"
             type="checkbox"
             onChange={()=> setTareaToggle(tarea.id) }

@@ -38,10 +38,10 @@ function App() {
       <h2>{ tareaEdit && 'Editar tarea' }</h2>
 
       <Formulario 
-          crearTareasp={crearTareasf} 
-          setTareaEdit={tareaEditf} 
+          crearTareasp={crearTareasf}  
           tareaEdit={tareaEdit}
-          todoUpdate={todoUpdate} />
+          todoUpdate={todoUpdate} 
+      />
  
       {tareas.map( tarea => ( 
             <Recordatorio 
@@ -49,7 +49,8 @@ function App() {
                 tarea={tarea} 
                 eliminarp={eliminarf} 
                 setTareaEdit={tareaEditf}
-                setTareaToggle={setTareaToggle} />
+                setTareaToggle={setTareaToggle} 
+            />
           )
         )
       }

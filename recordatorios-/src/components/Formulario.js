@@ -17,13 +17,13 @@ const Formulario = ({ crearTareasp, setTareaEdit, tareaEdit, todoUpdate }) => {
 
     const { hacer, detalles, deadline, deadtime } = tarea
 
-    const formChange = e =>{
+    const formChange = e => {
           setTarea( { ...tarea, [e.target.name]: e.target.value } )
     }
 
     useEffect(() => {
         if(tareaEdit){ setTarea(tareaEdit) }
-        else{ setTarea({ hacer:'', detalles:'', deadline:'', deadtime:'', toggle:false }) }
+        else{ setTarea({ hacer:'', detalles:'', deadline:'', deadtime:'', toggle:false }) } //reset form 
     }, [tareaEdit])
 
     const enviarForm = e =>{
@@ -38,7 +38,7 @@ const Formulario = ({ crearTareasp, setTareaEdit, tareaEdit, todoUpdate }) => {
         setError(false)
     
         if(tareaEdit){ todoUpdate(tarea); setSuccessMessage('Actualizado con éxito') }
-        else{ crearTareasp(tarea); setSuccessMessage('Agregado con exito') } //meter cada objeto en array
+        else{ crearTareasp(tarea); setSuccessMessage('Agregado con exito') } //salida de objeto
 
         if(tareaEdit){ todoUpdate(tarea) }
         else{ tarea.id = uuidv4() }
