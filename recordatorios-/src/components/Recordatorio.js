@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 
 
-const Recordatorio = ({ tarea, eliminarp, setTareaEdit, setTareaToggle }) => {  
+const Recordatorio = ({ tarea, eliminarp, tareaReadyToEdit, tareaToggle }) => {  
 
   return ( 
     <Fragment>
@@ -23,7 +23,7 @@ const Recordatorio = ({ tarea, eliminarp, setTareaEdit, setTareaToggle }) => {
           <br/> <br/>
 
           <button
-            onClick={ ()=> setTareaEdit(tarea) }>
+            onClick={ ()=> tareaReadyToEdit(tarea) }>
             Editar {tarea.hacer}
           </button>  <br/> <br/>
           
@@ -33,7 +33,7 @@ const Recordatorio = ({ tarea, eliminarp, setTareaEdit, setTareaToggle }) => {
             id={tarea.id}
             name="toggle"
             type="checkbox"
-            onChange={()=> setTareaToggle(tarea.id) }
+            onChange={ ()=> tareaToggle(tarea.id) }
           />  
 
          

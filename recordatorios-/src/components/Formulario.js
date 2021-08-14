@@ -1,8 +1,8 @@
-import React, { Fragment, useState,useEffect} from 'react'
+import React, { Fragment, useState,useEffect } from 'react'
 import {v4 as uuidv4} from 'uuid'
 
 
-const Formulario = ({ crearTareasp, setTareaEdit, tareaEdit, todoUpdate }) => {  
+const Formulario = ({ crearTareasp, editNull, tareaToEdit, todoUpdated }) => {  
     
     const [successMessage, setSuccessMessage] = useState(null)
     const [error, setError] = useState(false)
@@ -18,13 +18,13 @@ const Formulario = ({ crearTareasp, setTareaEdit, tareaEdit, todoUpdate }) => {
     const { hacer, detalles, deadline, deadtime } = tarea
 
     const formChange = e => {
-          setTarea( { ...tarea, [e.target.name]: e.target.value } )
+        setTarea( { ...tarea, [e.target.name]: e.target.value } )
     }
 
     useEffect(() => {
-        if(tareaEdit){ setTarea(tareaEdit) }
+        if(tareaToEdit){ setTarea(tareaToEdit) }
         else{ setTarea({ hacer:'', detalles:'', deadline:'', deadtime:'', toggle:false }) } //reset form 
-    }, [tareaEdit])
+    }, [tareaToEdit])
 
     const enviarForm = e =>{
 
@@ -37,10 +37,10 @@ const Formulario = ({ crearTareasp, setTareaEdit, tareaEdit, todoUpdate }) => {
 
         setError(false)
     
-        if(tareaEdit){ todoUpdate(tarea); setSuccessMessage('Actualizado con éxito') }
+        if(tareaToEdit){ todoUpdated(tarea); setSuccessMessage('Actualizado con éxito') }
         else{ crearTareasp(tarea); setSuccessMessage('Agregado con exito') } //salida de objeto
 
-        if(tareaEdit){ todoUpdate(tarea) }
+        if(tareaToEdit){ todoUpdated(tarea) }
         else{ tarea.id = uuidv4() }
        
         setTimeout(() => { setSuccessMessage(null) }, 6000)
@@ -86,13 +86,13 @@ const Formulario = ({ crearTareasp, setTareaEdit, tareaEdit, todoUpdate }) => {
                     
             { error ? <p>Usa todos los campos</p> : null}  <br/>
                  
-            <button type="submit"> { tareaEdit ? 'Editar' : 'Agregar tarea' } </button>
+            <button type="submit"> { tareaToEdit ? 'Editar' : 'Agregar tarea' } </button>
             <br/><br/>
         </form>
 
 
-        { tareaEdit &&
-            <button onClick={ ()=> setTareaEdit(null) }> Nueva Tarea </button> 
+        { tareaToEdit &&
+            <button onClick={ ()=> editNull(null) }> Nueva Tarea </button> 
         } 
                 
         { successMessage && 

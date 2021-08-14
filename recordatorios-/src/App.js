@@ -6,7 +6,7 @@ import Recordatorio from "./components/Recordatorio"
 function App() {
   
   const [tareas, setTareas] = useState([]) 
-  const [tareaEdit, setTareaEdit] = useState(null)
+  const [tareaToEdit, setTareaToEdit] = useState(null)
   console.log(tareas)
 
   //mete cada objeto en un array 
@@ -16,16 +16,16 @@ function App() {
     setTareas( tareas.filter( tarea => tarea.id !== id ) )
   }
   
-  const tareaEditf = tarea => { setTareaEdit(tarea) }
+  const tareaEditf = tarea => { setTareaToEdit(tarea) }
 
-  const todoUpdate = update => {
-      setTareas(tareas.map( tarea => tarea.id === update.id ? update : tarea ))
-      setTareaEdit(null)
+  const todoUpdated = updated => {
+      setTareas(tareas.map( tarea => tarea.id === updated.id ? updated : tarea ))
+      setTareaToEdit(null)
   }
   
-  const setTareaToggle = toggle => { 
-      setTareaEdit(tareas.map( tarea => tarea.id === toggle ? tarea.toggle = !tarea.toggle : tarea.toggle ))
-      setTareaEdit(null) 
+  const tareaToggle = id => { 
+      setTareaToEdit(tareas.map( el => el.id === id ? el.toggle = !el.toggle : el.toggle ))
+      setTareaToEdit(null) 
   }
 
   const titulo = tareas.length === 0 ? "No hay Tareas" : "Administra tus Tareas" 
@@ -35,12 +35,13 @@ function App() {
 
       {titulo}
 
-      <h2>{ tareaEdit && 'Editar tarea' }</h2>
+      <h2>{ tareaToEdit && 'Editar tarea' }</h2>
 
       <Formulario 
-          crearTareasp={crearTareasf}  
-          tareaEdit={tareaEdit}
-          todoUpdate={todoUpdate} 
+          crearTareasp={crearTareasf} 
+          editNull={tareaEditf} 
+          tareaToEdit={tareaToEdit}
+          todoUpdated={todoUpdated} 
       />
  
       {tareas.map( tarea => ( 
@@ -48,8 +49,8 @@ function App() {
                 key={tarea.id}
                 tarea={tarea} 
                 eliminarp={eliminarf} 
-                setTareaEdit={tareaEditf}
-                setTareaToggle={setTareaToggle} 
+                tareaReadyToEdit={tareaEditf}
+                tareaToggle={tareaToggle} 
             />
           )
         )
