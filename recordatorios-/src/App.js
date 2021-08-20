@@ -24,8 +24,7 @@ function App() {
   }
   
   const tareaToggle = id => { 
-      setTareaToEdit(tareas.map( el => el.id === id ? el.toggle = !el.toggle : el.toggle ))
-      setTareaToEdit(null) 
+      tareas.map( el => el.id === id ? el.toggle = !el.toggle : el.toggle )
   }
 
   const titulo = tareas.length === 0 ? "No hay Tareas" : "Administra tus Tareas" 
